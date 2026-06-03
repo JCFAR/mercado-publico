@@ -343,6 +343,7 @@ class MercadoPublicoInteligente {
         e.preventDefault();
         const view = item.getAttribute('data-view');
         this.router(view);
+        this.closeMobileSidebar();
       });
     });
 
@@ -1744,6 +1745,24 @@ class MercadoPublicoInteligente {
     this.loadUserProfile();
     alert('¡Configuración de perfil guardada exitosamente!');
     this.router('dashboard');
+  }
+
+  toggleMobileSidebar() {
+    const sidebar = document.querySelector('aside.sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (sidebar && overlay) {
+      sidebar.classList.toggle('mobile-open');
+      overlay.classList.toggle('active');
+    }
+  }
+
+  closeMobileSidebar() {
+    const sidebar = document.querySelector('aside.sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (sidebar && overlay) {
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('active');
+    }
   }
 }
 
