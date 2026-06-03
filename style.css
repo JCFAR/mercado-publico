@@ -73,6 +73,9 @@ body {
 }
 
 /* Sidebar Estilo Cyberpunk */
+.sidebar-close-btn {
+  display: none;
+}
 aside.sidebar {
   width: var(--sidebar-width);
   background-color: var(--bg-secondary);
@@ -822,6 +825,23 @@ table.mpi-table tr:hover td {
   .mobile-header {
     display: flex;
   }
+  .sidebar-close-btn {
+    display: block;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .sidebar-close-btn:hover {
+    color: var(--accent-rose);
+  }
   aside.sidebar {
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -831,9 +851,12 @@ table.mpi-table tr:hover td {
     height: 100vh;
     width: var(--sidebar-width);
     z-index: 300;
+    background-color: var(--bg-secondary) !important;
+    box-shadow: none;
   }
   aside.sidebar.mobile-open {
     transform: translateX(0);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.8);
   }
   .sidebar-overlay.active {
     display: block;
