@@ -1,0 +1,18 @@
+{
+  "name": "mercado-publico-inteligente",
+  "version": "1.0.0",
+  "description": "Plataforma de Inteligencia de Mercado para Mercado Público de Chile",
+  "main": "proxy.js",
+  "scripts": {
+    "proxy": "node proxy.js",
+    "serve": "npx http-server -p 8080",
+    "extract": "node parse-compras.js",
+    "start": "npx concurrently \"npm run proxy\" \"npm run serve\""
+
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Público Inteligente - Plataforma de Inteligencia Comercial</title>
+  <!-- SEO Tags -->
+  <meta name="description" content="Descubre oportunidades de negocio, analiza el comportamiento histórico de compras del Estado de Chile, calcula precios óptimos y cotiza con inteligencia artificial.">
+  <meta name="keywords" content="mercado publico, compras agiles, licitaciones chile, inteligencia comercial, chile compra">
+  
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">MP</div>
+        <div class="logo-text">Mercado Público<br><span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:700;">INTELIGENTE</span></div>
+        <div class="logo-tag">PRO</div>
+      </div>
+      
+      <ul class="nav-menu">
+        <li class="nav-item active" data-view="dashboard">
+          <a href="#dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard Ejecutivo</a>
+        </li>
+        <li class="nav-item" data-view="radar">
+          <a href="#radar"><i class="fa-solid fa-satellite-dish"></i> Radar Oportunidades</a>
+        </li>
+        <li class="nav-item" data-view="favoritos">
+          <a href="#favoritos"><i class="fa-solid fa-star" style="color:var(--accent-yellow);"></i> Oportunidades Guardadas</a>
+        </li>
+        <li class="nav-item" data-view="historial">
+          <a href="#historial"><i class="fa-solid fa-clock-rotate-left"></i> Historial Compras</a>
+        </li>
+        <li class="nav-item" data-view="precios">
+          <a href="#precios"><i class="fa-solid fa-tags"></i> Inteligencia Precios</a>
+        </li>
+        <li class="nav-item" data-view="compradores">
+          <a href="#compradores"><i class="fa-solid fa-building-columns"></i> Perfil Compradores</a>
+        </li>
+        <li class="nav-item" data-view="proveedores">
+          <a href="#proveedores"><i class="fa-solid fa-users-rectangle"></i> Perfil Competencia</a>
+        </li>
+        <li class="nav-item" data-view="catalogo">
+          <a href="#catalogo"><i class="fa-solid fa-folder-open"></i> Biblioteca y Catálogo</a>
+        </li>
+        <li class="nav-item" data-view="alertas">
+          <a href="#alertas"><i class="fa-solid fa-bell"></i> Alertas de Oportunidades</a>
+        </li>
+        <li class="nav-item" data-view="resultados">
+          <a href="#resultados"><i class="fa-solid fa-award"></i> Mis Resultados</a>
+        </li>
+        <li class="nav-item" data-view="recomendador">
+          <a href="#recomendador"><i class="fa-solid fa-wand-magic-sparkles"></i> Recomendador IA</a>
+        </li>
+        <li class="nav-item" data-view="configuracion">
+          <a href="#configuracion"><i class="fa-solid fa-gears"></i> Mi Perfil / Empresa</a>
+        </li>
+      </ul>
+      
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-avatar">AT</div>
+          <div class="user-info">
+            <span class="user-name">AgroTech Ltda</span>
+            <span class="user-rut">76.452.129-K</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      
+      <!-- HEADER COMÚN -->
+      <header class="content-header">
+        <div class="header-title-container">
+          <h1 id="page-title">Dashboard Ejecutivo</h1>
+          <p id="page-subtitle">Monitorea y analiza el comportamiento global del mercado público chileno.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span class="badge badge-cyan" id="api-connection-status" style="font-family:var(--font-title); font-size:0.75rem; padding:0.4rem 0.75rem;"><i class="fa-solid fa-satellite"></i> Modo Local (Demostración)</span>
+          <div class="header-actions">
+            <button class="btn btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir Reporte</button>
+            <button class="btn btn-primary" onclick="app.router('radar')"><i class="fa-solid fa-satellite-dish"></i> Ver Radar Activo</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- VISTA 1: DASHBOARD EJECUTIVO -->
+      <section id="view-dashboard" class="view-section active">
+        <div class="kpi-grid">
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon cyan"><i class="fa-solid fa-wallet"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value">$2.450M</span>
+              <span class="kpi-label">Monto Transado Estimado (Mes)</span>
+              <span class="kpi-trend trend-up"><i class="fa-solid fa-caret-up"></i> +12% vs mes anterior</span>
+            </div>
+          </div>
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon violet"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value">1,420</span>
+              <span class="kpi-label">Compras Ágiles Publicadas</span>
+              <span class="kpi-trend trend-up"><i class="fa-solid fa-caret-up"></i> +8% de incremento</span>
+            </div>
+          </div>
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon emerald"><i class="fa-solid fa-award"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value">72%</span>
+              <span class="kpi-label">Tasa de Adjudicación Competencia</span>
+              <span class="kpi-trend trend-down"><i class="fa-solid fa-caret-down"></i> -1.5% reducción general</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics-section">
+          <div class="glass-panel">
+            <h3 class="modal-title" style="margin-bottom: 1rem;"><i class="fa-solid fa-chart-line" style="color:var(--accent-cyan);"></i> Compras del Estado por Región (Millones CLP)</h3>
+            <div class="chart-placeholder" id="db-region-chart">
+              <!-- Renderizado dinámico en app.js -->
+            </div>
+          </div>
+          <div class="glass-panel">
+            <h3 class="modal-title" style="margin-bottom: 1rem;"><i class="fa-solid fa-pizza-slice" style="color:var(--accent-violet);"></i> Distribución por Rubros</h3>
+            <div class="chart-placeholder" id="db-rubro-chart">
+              <!-- Renderizado dinámico en app.js -->
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h3 class="modal-title" style="margin-bottom:1rem;"><i class="fa-solid fa-fire" style="color:var(--accent-rose);"></i> Productos Más Demandados (Últimos 30 días)</h3>
+          <div class="table-container">
+            <table class="mpi-table" id="db-top-products-table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría Normalizada</th>
+                  <th>Cantidad Total Comprada</th>
+                  <th>Precio Promedio</th>
+                  <th>Región Principal</th>
+                  <th>Acción Comercial</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Contenido dinámico -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 2: RADAR DE OPORTUNIDADES (COMPRAS ÁGILES) -->
+      <section id="view-radar" class="view-section">
+       <div class="glass-panel">
+          <div class="filter-bar">
+            <div class="form-group">
+              <label>Región</label>
+              <select class="form-control" id="radar-region-select">
+                <option value="">Todas las Regiones</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Líneas de Negocio (Rubro Ampliado)</label>
+              <select class="form-control" id="radar-rubro-select" style="border-left: 3px solid var(--accent-cyan);">
+                <option value="">Todos los Rubros</option>
+                <optgroup label="🍎 Alimentos y Consumo Humano">
+                  <option value="Alimentos y Hortalizas">Verduras, Hortalizas y Frutas Frescas</option>
+                  <option value="Abarrotes y Almacén">Abarrotes, Conservas y Despensa</option>
+                  <option value="Dulces y Confitería">Dulces, Confitería y Panadería</option>
+                  <option value="Alimentos - Todo">-- Todo Alimentos --</option>
+                </optgroup>
+                <optgroup label="🧹 Limpieza e Insumos Sanitarios">
+                  <option value="Productos de Aseo y Limpieza">Artículos de Aseo e Higiene</option>
+                </optgroup>
+                <optgroup label="💻 Otros Rubros del Estado">
+                  <option value="Tecnología y Computación">Tecnología y Computación</option>
+                  <option value="Papelería y Oficina">Papelería y Oficina</option>
+                  <option value="Servicios de Mantención">Servicios de Mantención</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Palabra Clave</label>
+              <input type="text" class="form-control" placeholder="Buscar por producto, código..." id="radar-keyword-input">
+            </div>
+            <div class="form-group">
+              <label>Monto Mínimo</label>
+              <input type="number" class="form-control" placeholder="$0" id="radar-amount-input">
+            </div>
+            <div class="form-group">
+              <label>Publicado Desde</label>
+              <input type="date" class="form-control" id="radar-date-start">
+            </div>
+            <button class="btn btn-primary" onclick="app.filterRadar()"><i class="fa-solid fa-magnifying-glass"></i> Filtrar</button>
+          </div>
+
+        </div>
+
+        <div class="opp-card-grid" id="radar-opportunities-container">
+          <!-- Tarjetas dinámicas -->
+        </div>
+      </section>
+      
+      <!-- VISTA 2.5: OPORTUNIDADES GUARDADAS (FAVORITOS) -->
+      <section id="view-favoritos" class="view-section">
+        <div class="glass-panel" style="margin-bottom: 1.5rem;">
+          <h3 class="modal-title" style="display:flex; align-items:center; gap:0.5rem;"><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i> Oportunidades Guardadas para Seguimiento</h3>
+          <p style="color: var(--text-secondary); margin-top: 0.5rem;">Aquí encontrarás las compras ágiles que has marcado con estrella para revisar, monitorear y cotizar más tarde.</p>
+        </div>
+        <div class="opp-card-grid" id="favoritos-opportunities-container">
+          <!-- Tarjetas guardadas dinámicas -->
+        </div>
+      </section>
+
+      <!-- VISTA 3: HISTORIAL DE COMPRAS DEL ESTADO -->
+      <section id="view-historial" class="view-section">
+        <div class="glass-panel">
+          <div class="filter-bar">
+            <div class="form-group">
+              <label>Producto a Analizar</label>
+              <input type="text" class="form-control" placeholder="Ej. Papa, Cebolla, Amonio, Notebook..." id="history-product-input" value="Papa">
+            </div>
+            <div class="form-group">
+              <label>Región de Compra</label>
+              <select class="form-control" id="history-region-select">
+                <option value="">Todas las Regiones</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Fecha Desde</label>
+              <input type="date" class="form-control" id="history-date-start">
+            </div>
+            <div class="form-group">
+              <label>Fecha Hasta</label>
+              <input type="date" class="form-control" id="history-date-end">
+            </div>
+            <button class="btn btn-primary" onclick="app.filterHistory()"><i class="fa-solid fa-chart-simple"></i> Buscar Historial</button>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h3 class="modal-title"><i class="fa-solid fa-list-check" style="color:var(--accent-cyan);"></i> Compras Adjudicadas Registradas</h3>
+            <span class="badge badge-cyan" id="history-counter-badge">0 Registros</span>
+          </div>
+          <div class="table-container">
+            <table class="mpi-table" id="history-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Producto Original</th>
+                  <th>Categoría Normalizada</th>
+                  <th>Comprador</th>
+                  <th>Proveedor Adjudicado</th>
+                  <th>Cantidad</th>
+                  <th>P. Unitario</th>
+                  <th>Total Transado</th>
+                  <th>Tipo Proceso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Contenido dinámico -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 4: INTELIGENCIA DE PRECIOS -->
+      <section id="view-precios" class="view-section">
+        <div class="glass-panel">
+          <div class="filter-bar">
+            <div class="form-group">
+              <label>Seleccionar Producto</label>
+              <input type="text" class="form-control" id="price-product-input" placeholder="Ej: Papa, Cebolla, Amonio, Vidrio, Colacion, Oficina..." value="">
+            </div>
+            <div class="form-group">
+              <label>Región de Referencia</label>
+              <select class="form-control" id="price-region-select">
+                <option value="">Todas las Regiones</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Fecha Desde</label>
+              <input type="date" class="form-control" id="price-date-start">
+            </div>
+            <div class="form-group">
+              <label>Fecha Hasta</label>
+              <input type="date" class="form-control" id="price-date-end">
+            </div>
+            <button class="btn btn-primary" onclick="app.filterPriceIntelligence()"><i class="fa-solid fa-wand-magic-sparkles"></i> Obtener Inteligencia</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid" id="price-stats-grid">
+          <!-- Estadísticas dinámicas -->
+        </div>
+
+        <div class="analytics-section">
+          <div class="glass-panel">
+            <h3 class="modal-title"><i class="fa-solid fa-chart-line" style="color:var(--accent-cyan);"></i> Evolución del Precio Unitario Promedio (Mes a Mes)</h3>
+            <div class="chart-placeholder" id="price-evolution-chart">
+              <!-- Renderizado dinámico SVG/CSS -->
+            </div>
+          </div>
+          <div class="glass-panel" style="display:flex; flex-direction:column; gap:1rem;">
+            <h3 class="modal-title"><i class="fa-solid fa-circle-question" style="color:var(--accent-violet);"></i> Consultas Rápidas Respondidas</h3>
+            <div id="price-faq-container">
+              <!-- Preguntas respondidas con IA -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Nueva Sección: Órdenes de Compra y Adjudicaciones de Origen -->
+        <div class="glass-panel" style="margin-top: 1.5rem;" id="price-sources-container">
+          <h3 class="modal-title" style="margin-bottom:1rem;"><i class="fa-solid fa-file-invoice-dollar" style="color:var(--accent-cyan);"></i> Órdenes de Compra y Procesos de Adjudicación Detectados</h3>
+          <div class="table-container">
+            <table class="mpi-table" id="price-sources-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Código Proceso / Ficha</th>
+                  <th>Producto Ofertado</th>
+                  <th>Organismo Comprador</th>
+                  <th>Proveedor Adjudicado</th>
+                  <th>Cantidad</th>
+                  <th>Precio Unitario</th>
+                  <th>Monto Total</th>
+                  <th>Ver en Mercado Público</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Carga dinámica en app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 5: PERFIL DE COMPRADORES -->
+      <section id="view-compradores" class="view-section">
+        <div class="glass-panel">
+          <div class="filter-bar" style="grid-template-columns: 2fr 1fr;">
+            <div class="form-group">
+              <label>Buscar Comprador del Estado</label>
+              <select class="form-control" id="buyer-select-picker" onchange="app.renderBuyerProfile(this.value)">
+                <!-- Compradores dinámicos -->
+              </select>
+            </div>
+            <div style="font-size: 0.8rem; color:var(--text-secondary); text-align:right;">
+              Selecciona un organismo para auditar sus hábitos de compra, frecuencia y proveedores estrella.
+            </div>
+          </div>
+        </div>
+
+        <div id="buyer-profile-container">
+          <!-- Render dinámico del perfil -->
+        </div>
+      </section>
+
+      <!-- VISTA 6: PERFIL DE PROVEEDORES (COMPETENCIA) -->
+      <section id="view-proveedores" class="view-section">
+        <div class="glass-panel">
+          <div class="filter-bar" style="grid-template-columns: 2fr 1fr;">
+            <div class="form-group">
+              <label>Buscar Proveedor / Competidor</label>
+              <select class="form-control" id="provider-select-picker" onchange="app.renderProviderProfile(this.value)">
+                <!-- Proveedores dinámicos -->
+              </select>
+            </div>
+            <div style="font-size: 0.8rem; color:var(--text-secondary); text-align:right;">
+              Analiza los mercados geográficos, tasa de adjudicación y productos estrella de tus competidores.
+            </div>
+          </div>
+        </div>
+
+        <div id="provider-profile-container">
+          <!-- Render dinámico del perfil del proveedor -->
+        </div>
+      </section>
+
+      <!-- VISTA 7: BIBLIOTECA Y CATÁLOGO PROPIO -->
+      <section id="view-catalogo" class="view-section">
+        <div style="display:grid; grid-template-columns: 2fr 1.2fr; gap:1.5rem;">
+          
+          <!-- Catálogo -->
+          <div class="glass-panel" style="display:flex; flex-direction:column; gap:1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3 class="modal-title"><i class="fa-solid fa-list-check" style="color:var(--accent-cyan);"></i> Catálogo de Productos Disponibles</h3>
+              <button class="btn btn-primary" onclick="app.showNewProductModal()"><i class="fa-solid fa-plus"></i> Registrar Producto</button>
+            </div>
+            <div class="catalog-grid" id="catalog-products-container">
+              <!-- Productos del catálogo -->
+            </div>
+          </div>
+
+          <!-- Gestor Documental -->
+          <div class="glass-panel" style="display:flex; flex-direction:column; gap:1rem;">
+            <h3 class="modal-title"><i class="fa-solid fa-file-shield" style="color:var(--accent-violet);"></i> Gestor Documental Técnico</h3>
+            <p style="font-size:0.75rem; color:var(--text-secondary);">Archiva tus certificados sanitarios, garantías o resoluciones para adjuntar al cotizador en segundos.</p>
+            <div class="doc-list" id="document-list-container">
+              <!-- Lista de documentos -->
+            </div>
+            <button class="btn btn-secondary" style="width:100%;" onclick="alert('Funcionalidad de carga simulada activa')"><i class="fa-solid fa-cloud-arrow-up"></i> Cargar Nuevo Archivo</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VISTA 8: ALERTAS DE OPORTUNIDADES -->
+      <section id="view-alertas" class="view-section">
+        <div class="alert-settings-grid">
+          <div class="glass-panel" style="display:flex; flex-direction:column; gap:1.25rem;">
+            <h3 class="modal-title"><i class="fa-solid fa-bell" style="color:var(--accent-cyan);"></i> Configurar Nueva Alerta</h3>
+            <div class="form-group">
+              <label>Región Objetivo</label>
+              <select class="form-control" id="alert-region-select">
+                <option value="">Todas las Regiones</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Rubro Comercial</label>
+              <select class="form-control" id="alert-rubro-select">
+                <!-- Rubros dinámicos -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Palabra Clave Filtro</label>
+              <input type="text" class="form-control" placeholder="Ej: Papa, Cebolla..." id="alert-keyword-input">
+            </div>
+            <div class="form-group">
+              <label>Monto Mínimo Proceso</label>
+              <input type="number" class="form-control" placeholder="$500.000" id="alert-amount-input">
+            </div>
+            <button class="btn btn-primary" onclick="app.createNewAlert()"><i class="fa-solid fa-bell"></i> Activar Alerta</button>
+          </div>
+
+          <div class="glass-panel" style="display:flex; flex-direction:column; gap:1rem;">
+            <h3 class="modal-title"><i class="fa-solid fa-shield-halved" style="color:var(--accent-violet);"></i> Mis Alertas Activas</h3>
+            <div class="table-container">
+              <table class="mpi-table" id="alerts-table">
+                <thead>
+                  <tr>
+                    <th>Región</th>
+                    <th>Rubro</th>
+                    <th>Filtro Palabra</th>
+                    <th>Monto Mínimo</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Alertas cargadas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 9: MIS RESULTADOS -->
+      <section id="view-resultados" class="view-section">
+        <div class="kpi-grid">
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon emerald"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value" id="res-adjudicated-qty">1</span>
+              <span class="kpi-label">Ofertas Adjudicadas</span>
+            </div>
+          </div>
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon cyan"><i class="fa-solid fa-piggy-bank"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value" id="res-adjudicated-amount">$821.000</span>
+              <span class="kpi-label">Ventas Totales al Estado</span>
+            </div>
+          </div>
+          <div class="glass-panel kpi-card">
+            <div class="kpi-icon violet"><i class="fa-solid fa-percent"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-value" id="res-success-rate">33.3%</span>
+              <span class="kpi-label">Tasa de Éxito Propia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h3 class="modal-title" style="margin-bottom:1rem;"><i class="fa-solid fa-list" style="color:var(--accent-cyan);"></i> Historial Completo de Cotizaciones Presentadas</h3>
+          <div class="table-container">
+            <table class="mpi-table" id="user-offers-table">
+              <thead>
+                <tr>
+                  <th>Código Proceso</th>
+                  <th>Nombre Oportunidad</th>
+                  <th>Comprador</th>
+                  <th>Fecha Presentación</th>
+                  <th>Monto Ofertado</th>
+                  <th>Estado del Proceso</th>
+                  <th>Resultado Comercial</th>
+                  <th>Feedback Recibido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Contenido dinámico -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISTA 10: RECOMENDADOR INTELIGENTE IA -->
+      <section id="view-recomendador" class="view-section">
+        <div class="advisor-panel">
+          <div class="advisor-avatar"><i class="fa-solid fa-brain"></i></div>
+          <div class="advisor-content">
+            <span class="advisor-title">Asistente Virtual de Ventas al Estado</span>
+            <span class="advisor-text">Analizo miles de compras y comportamientos estatales diarios para identificar nichos rentables sin explotar en tu región. Aquí tienes mis sugerencias prioritarias para esta semana.</span>
+          </div>
+        </div>
+
+        <div class="recommender-grid" id="recommender-cards-container">
+          <!-- Tarjetas recomendadoras -->
+        </div>
+      </section>
+      
+      <!-- VISTA 11: CONFIGURACIÓN DE PERFIL / EMPRESA -->
+      <section id="view-configuracion" class="view-section">
+        <div class="glass-panel" style="max-width: 800px; margin: 0 auto; width:100%;">
+          <h3 class="modal-title" style="margin-bottom: 1.5rem; display:flex; align-items:center; gap:0.5rem;"><i class="fa-solid fa-gears" style="color: var(--accent-cyan);"></i> Configuración de Perfil y Datos de la Empresa</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.85rem;">Actualiza los datos de tu empresa. Esta información se utilizará para personalizar las cotizaciones PDF, la barra lateral y los cálculos automáticos del catálogo.</p>
+          
+          <form id="profile-config-form" onsubmit="app.saveUserProfile(event)">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem; margin-bottom:1.5rem;">
+              <div class="form-group">
+                <label>Nombre de la Empresa / Razón Social</label>
+                <input type="text" class="form-control" id="config-company-name" required>
+              </div>
+              <div class="form-group">
+                <label>RUT de la Empresa</label>
+                <input type="text" class="form-control" id="config-company-rut" required placeholder="76.452.129-K">
+              </div>
+              <div class="form-group">
+                <label>Región de Operación Base</label>
+                <select class="form-control" id="config-company-region" required>
+                  <!-- Dinámico -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label>API Key / Ticket ChileCompra</label>
+                <input type="text" class="form-control" id="config-company-apikey" required>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar Configuración</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: ASISTENTE DE COTIZACIÓN INTELIGENTE PARA COMPRAS ÁGILES -->
+  <div class="modal-overlay" id="cotizador-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent-cyan); margin-right: 0.5rem;"></i> Centro de Cotizaciones Inteligente</div>
+        <button class="modal-close" onclick="app.closeCotizador()">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Panel Asesor Estratégico -->
+        <div class="advisor-panel">
+          <div class="advisor-avatar"><i class="fa-solid fa-circle-question"></i></div>
+          <div class="advisor-content">
+            <span class="advisor-title">Asistente de Preparación de Oferta (Estrategia de Precios)</span>
+            <span class="advisor-text" id="cotizador-advisor-recommendation">Analizando la oportunidad de compra...</span>
+          </div>
+        </div>
+
+        <!-- Ficha de Oportunidad Detectada -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <div class="glass-panel" style="padding:1rem; background:rgba(255,255,255,0.01)">
+            <h4 style="font-family:var(--font-title); margin-bottom:0.75rem; border-bottom:1px solid var(--glass-border); padding-bottom:0.35rem; color:var(--accent-cyan);">Detalles del Comprador</h4>
+            <table style="width:100%; font-size:0.8rem; border-collapse:collapse;" id="cotizador-opp-details-table">
+              <!-- Autocompletado -->
+            </table>
+          </div>
+          <div class="glass-panel" style="padding:1rem; background:rgba(255,255,255,0.01)">
+            <h4 style="font-family:var(--font-title); margin-bottom:0.75rem; border-bottom:1px solid var(--glass-border); padding-bottom:0.35rem; color:var(--accent-violet);">Condiciones Especiales</h4>
+            <table style="width:100%; font-size:0.8rem; border-collapse:collapse;" id="cotizador-opp-rules-table">
+              <!-- Autocompletado -->
+            </table>
+          </div>
+        </div>
+
+        <!-- Productos Solicitados y Cotización Manual / Inteligente -->
+        <div class="glass-panel" style="margin-bottom: 1.5rem;">
+          <h4 style="font-family:var(--font-title); margin-bottom:1rem;"><i class="fa-solid fa-list-check" style="color:var(--accent-emerald);"></i> Productos Requeridos y Precios a Ofertar</h4>
+          <div class="table-container">
+            <table class="mpi-table" id="cotizador-items-table">
+              <thead>
+                <tr>
+                  <th>Descripción Requerida</th>
+                  <th>Cantidad</th>
+                  <th>Sugerencia de mi Catálogo</th>
+                  <th>Precio Unitario Oferta ($)</th>
+                  <th>Subtotal ($)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Items dinámicos -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Opciones Comerciales -->
+        <div class="glass-panel" style="margin-bottom: 1.5rem; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label>Plazo de Entrega (Días hábiles)</label>
+            <input type="number" class="form-control" value="3" id="cotizador-delivery-days">
+          </div>
+          <div class="form-group">
+            <label>Stock / Disponibilidad</label>
+            <select class="form-control" id="cotizador-stock-status">
+              <option value="Inmediato">Inmediato (Stock completo)</option>
+              <option value="Parcial">Despacho parcial</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Vigencia de la Oferta (Días)</label>
+            <input type="number" class="form-control" value="30" id="cotizador-validity">
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
+          <button class="btn btn-secondary" onclick="app.closeCotizador()">Cancelar</button>
+          <button class="btn btn-success" onclick="app.previewCotizacion()"><i class="fa-solid fa-file-pdf"></i> Generar Cotización Profesional</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VISTA PREVIA DE COTIZACIÓN ADAPTADA A PDF -->
+  <div class="modal-overlay" id="pdf-modal">
+    <div class="modal-container" style="max-width: 900px; background-color:#f3f4f6;">
+      <div class="modal-header" style="background-color: var(--bg-secondary); border-bottom:1px solid var(--glass-border);">
+        <div class="modal-title" style="color:#fff;"><i class="fa-solid fa-file-pdf" style="color:var(--accent-rose);"></i> Vista Previa del Documento de Cotización</div>
+        <button class="modal-close" style="color:#fff;" onclick="app.closePDF()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 2rem;">
+        
+        <div class="quotation-preview-container" id="quotation-print-area">
+          <!-- Área del documento corporativo dinámico -->
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button class="btn btn-secondary" onclick="app.closePDF()">Cerrar Vista Previa</button>
+          <button class="btn btn-primary" onclick="app.submitQuotation()"><i class="fa-solid fa-cloud-arrow-up"></i> Presentar Oferta a Mercado Público</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Carga de datos y lógica de negocio -->
+  <script src="data.js"></script>
+  <script src="app.js?v=1.1.1"></script>
+</body>
+</html>
